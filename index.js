@@ -64,3 +64,15 @@ const imgSlide = () => {
   updateBullet();
   ButtonShowandHide();
 };
+
+//Create Auto Slide
+const autoSlide = () => {
+  imgSlide();
+  slide++;
+  if (slide > images.length - 1) {
+    slide = 0;
+  }
+};
+
+//Change Slide after 2 sec
+setInterval(autoSlide, 2000);
