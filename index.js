@@ -16,14 +16,27 @@ const updateBullet = () => {
 };
 updateBullet();
 
-//To set All images left hide according to percentage like 0%, 100%
+//this function create to button show and hide when slide ===0 then prevButton will be Hide and same do for nextBUtton
+const ButtonShowandHide = () => {
+  slide === 0
+    ? (prevButton.style.display = "none")
+    : (prevButton.style.display = "block");
+  slide === images.length - 1
+    ? (nextButton.style.display = "none")
+    : (nextButton.style.display = "block");
+};
+ButtonShowandHide();
+
+//To set All images left hide according to their index into percentage like 0%, 100%
 images.forEach((img, index) => {
   img.style.left = `${index * 100}%`;
 });
 
 const slideChangeonClickBullet = (slideValue) => {
-  console.log(slideValue);
+  slide = slideValue;
+  imgSlide();
 };
+
 //Change Slide on click previous button
 const prevClick = () => {
   slide--;
@@ -31,7 +44,6 @@ const prevClick = () => {
     slide = images.length - 1;
   }
   imgSlide();
-  updateBullet();
 };
 
 //Change Slide on Click next Button
@@ -42,7 +54,6 @@ const nextClick = () => {
   }
   prevButton.style.display = "block";
   imgSlide();
-  updateBullet();
 };
 
 //Change image transform according to click
@@ -50,4 +61,6 @@ const imgSlide = () => {
   images.forEach((image) => {
     image.style.transform = `translateX(-${slide * 100}%)`;
   });
+  updateBullet();
+  ButtonShowandHide();
 };
