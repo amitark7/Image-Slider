@@ -1,23 +1,21 @@
-let prevButton = document.querySelector(".prev-button");
-let nextButton = document.querySelector(".next-button");
-let bullets = document.querySelectorAll(".bullet");
-let images = document.querySelectorAll(".images");
+const prevButton = document.querySelector(".prev-button");
+const nextButton = document.querySelector(".next-button");
+const bullets = document.querySelectorAll(".bullet");
+const images = document.querySelectorAll(".images");
 let slide = 0;
 
 //Update Bullet according to Slide image show diffrent color
 const updateBullet = () => {
   bullets.forEach((bullet, index) => {
-    if (index === slide) {
-      bullet.classList.add("active");
-    } else {
-      bullet.classList.remove("active");
-    }
+    index === slide
+      ? bullet.classList.add("active")
+      : bullet.classList.remove("active");
   });
 };
 updateBullet();
 
 //this function create to button show and hide when slide ===0 then prevButton will be Hide and same do for nextBUtton
-const ButtonShowandHide = () => {
+const buttonShowandHide = () => {
   slide === 0
     ? (prevButton.style.display = "none")
     : (prevButton.style.display = "block");
@@ -25,13 +23,14 @@ const ButtonShowandHide = () => {
     ? (nextButton.style.display = "none")
     : (nextButton.style.display = "block");
 };
-ButtonShowandHide();
+buttonShowandHide();
 
 //To set All images left hide according to their index into percentage like 0%, 100%
 images.forEach((img, index) => {
   img.style.left = `${index * 100}%`;
 });
 
+//function invoke on bullet click
 const slideChangeonClickBullet = (slideValue) => {
   slide = slideValue;
   imgSlide();
@@ -39,7 +38,6 @@ const slideChangeonClickBullet = (slideValue) => {
 
 //Change Slide on click previous button
 const prevClick = () => {
-  console.log("Backward button");
   slide--;
   if (slide < 0) {
     slide = images.length - 1;
@@ -63,7 +61,7 @@ const imgSlide = () => {
     image.style.transform = `translateX(-${slide * 100}%)`;
   });
   updateBullet();
-  ButtonShowandHide();
+  buttonShowandHide();
 };
 
 //Create Auto Slide function
