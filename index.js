@@ -5,17 +5,17 @@ const images = document.querySelectorAll(".images");
 let slide = 0;
 
 //Update Bullet according to Slide image show diffrent color
-const updateBullet = () => {
+const updateBulletStatus = () => {
   bullets.forEach((bullet, index) => {
     index === slide
       ? bullet.classList.add("active")
       : bullet.classList.remove("active");
   });
 };
-updateBullet();
+updateBulletStatus();
 
 //this function create to button show and hide when slide ===0 then prevButton will be Hide and same do for nextBUtton
-const buttonShowandHide = () => {
+const buttonShowAndHide = () => {
   slide === 0
     ? (prevButton.style.display = "none")
     : (prevButton.style.display = "block");
@@ -23,7 +23,7 @@ const buttonShowandHide = () => {
     ? (nextButton.style.display = "none")
     : (nextButton.style.display = "block");
 };
-buttonShowandHide();
+buttonShowAndHide();
 
 //To set All images left hide according to their index into percentage like 0%, 100%
 images.forEach((img, index) => {
@@ -31,7 +31,7 @@ images.forEach((img, index) => {
 });
 
 //function invoke on bullet click
-const slideChangeonClickBullet = (slideValue) => {
+const slideChangeOnClickBullet = (slideValue) => {
   slide = slideValue;
   imgSlide();
 };
@@ -60,14 +60,13 @@ const imgSlide = () => {
   images.forEach((image) => {
     image.style.transform = `translateX(-${slide * 100}%)`;
   });
-  updateBullet();
-  buttonShowandHide();
+  updateBulletStatus();
+  buttonShowAndHide();
 };
 
 //Create Auto Slide function
-let interValRef;
 const autoSlide = () => {
-  interValRef = setInterval(() => {
+  setInterval(() => {
     imgSlide();
     slide++;
     if (slide > images.length - 1) {
