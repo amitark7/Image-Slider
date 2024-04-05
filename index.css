@@ -67,6 +67,33 @@
     background-color: rgb(67, 67, 67);
 }
 
+.bottom-container {
+    width: 80%;
+    height: 30px;
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.bottom-container .autoslider-container,
+.bottom-container .timer-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.autoslider-container p,
+.timer-container p {
+    font-size: 15px;
+}
+
+#autoSlideOnOrOff,
+#timer {
+    padding: 3px;
+}
+
 @media only screen and (min-width:320px) {
     .slider-container .slider {
         height: 250px;

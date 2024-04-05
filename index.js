@@ -2,7 +2,23 @@ const prevButton = document.querySelector(".prev-button");
 const nextButton = document.querySelector(".next-button");
 const bullets = document.querySelectorAll(".bullet");
 const images = document.querySelectorAll(".images");
+const autoSlideSelected = document.getElementById("autoSlideOnOrOff");
+const timerSelected = document.getElementById("timer");
 let slide = 0;
+let isAutoPlay = "On";
+let timer = 2000;
+
+//Get value on Slide mode Selceted on or Off and Run autoSlide function
+autoSlideSelected.addEventListener("change", () => {
+  isAutoPlay = autoSlideSelected.value;
+  autoSlide();
+});
+
+//Get Timer value from timerSelcted and call AutoSlide function
+timerSelected.addEventListener("change", () => {
+  timer = timerSelected.value;
+  autoSlide();
+});
 
 //Update Bullet according to Slide image show diffrent color
 const updateBulletStatus = () => {
@@ -12,8 +28,8 @@ const updateBulletStatus = () => {
       : bullet.classList.remove("active");
   });
 };
-updateBulletStatus();
 
+updateBulletStatus();
 //this function create to button show and hide when slide ===0 then prevButton will be Hide and same do for nextBUtton
 const buttonShowAndHide = () => {
   slide === 0
@@ -65,14 +81,22 @@ const imgSlide = () => {
 };
 
 //Create Auto Slide function
+let interValRef;
 const autoSlide = () => {
-  setInterval(() => {
-    imgSlide();
-    slide++;
-    if (slide > images.length - 1) {
-      slide = 0;
-    }
-  }, 5000);
+  if (isAutoPlay === "On") {
+    //if interval Reference available then we clear interval to start new interval function
+    interValRef ? clearInterval(interValRef) : "";
+    interValRef = setInterval(() => {
+      imgSlide();
+      slide++;
+      if (slide > images.length - 1) {
+        slide = 0;
+      }
+    }, timer);
+  } else {
+    //if autoSlide off then clear interval
+    clearInterval(interValRef);
+  }
 };
 
 //Run AutoSlide Function
