@@ -39,6 +39,7 @@ const slideChangeonClickBullet = (slideValue) => {
 
 //Change Slide on click previous button
 const prevClick = () => {
+  console.log("Backward button");
   slide--;
   if (slide < 0) {
     slide = images.length - 1;
@@ -66,13 +67,16 @@ const imgSlide = () => {
 };
 
 //Create Auto Slide
+let interValRef;
 const autoSlide = () => {
-  imgSlide();
-  slide++;
-  if (slide > images.length - 1) {
-    slide = 0;
-  }
+  interValRef = setInterval(() => {
+    imgSlide();
+    slide++;
+    if (slide > images.length - 1) {
+      slide = 0;
+    }
+  }, 5000);
 };
 
 //Change Slide after 2 sec
-setInterval(autoSlide, 2000);
+autoSlide();
