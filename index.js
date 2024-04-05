@@ -66,7 +66,7 @@ const imgSlide = () => {
   ButtonShowandHide();
 };
 
-//Create Auto Slide
+//Create Auto Slide function
 let interValRef;
 const autoSlide = () => {
   interValRef = setInterval(() => {
@@ -78,5 +78,5 @@ const autoSlide = () => {
   }, 5000);
 };
 
-//Change Slide after 2 sec
+//Run AutoSlide Function
 autoSlide();
